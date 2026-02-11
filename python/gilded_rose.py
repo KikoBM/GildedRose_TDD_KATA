@@ -11,13 +11,16 @@ class GildedRose(object):
     def _is_brie(self, item):
         return item.name == "Aged Brie"
     
+    def _is_backstage(self, item):
+        return item.name == "Backstage passes to a TAFKAL80ETC concert"
+    
 
     def update_quality(self):
         for item in self.items:
-            if item.name in ["Aged Brie", "Backstage passes to a TAFKAL80ETC concert"]:
+            if self._is_brie(item) or self._is_backstage(item):
                 if item.quality < 50:
                     item.quality += 1
-                    if item.name == "Backstage passes to a TAFKAL80ETC concert":
+                    if self._is_backstage(item):
                         if item.sell_in < 11:
                             if item.quality < 50:
                                 item.quality += 1
@@ -33,7 +36,7 @@ class GildedRose(object):
                 item.sell_in = item.sell_in - 1
             if item.sell_in < 0:
                 if not self._is_brie(item):
-                    if item.name != "Backstage passes to a TAFKAL80ETC concert":
+                    if not self._is_backstage(item):
                         if item.quality > 0:
                             if not self._is_sulfuras(item):
                                 item.quality -= 1
