@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+MAX_QUALITY = 50
+
 class GildedRose(object):
 
     def __init__(self, items):
@@ -18,14 +20,14 @@ class GildedRose(object):
     def update_quality(self):
         for item in self.items:
             if self._is_brie(item) or self._is_backstage(item):
-                if item.quality < 50:
+                if item.quality < MAX_QUALITY:
                     item.quality += 1
                     if self._is_backstage(item):
                         if item.sell_in < 11:
-                            if item.quality < 50:
+                            if item.quality < MAX_QUALITY:
                                 item.quality += 1
                         if item.sell_in < 6:
-                            if item.quality < 50:
+                            if item.quality < MAX_QUALITY:
                                 item.quality += 1
             else:
                 if item.quality > 0:
@@ -43,7 +45,7 @@ class GildedRose(object):
                     else:
                         item.quality = item.quality - item.quality
                 else:
-                    if item.quality < 50:
+                    if item.quality < MAX_QUALITY:
                         item.quality += 1
 
 
