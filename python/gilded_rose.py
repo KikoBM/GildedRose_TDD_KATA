@@ -39,15 +39,17 @@ class GildedRose(object):
             item.sell_in -= 1
             
             if item.sell_in < 0:
-                if not self._is_brie(item):
-                    if not self._is_backstage(item):
-                        if item.quality > 0: 
-                            item.quality -= 1
-                    else:
-                        item.quality = item.quality - item.quality
-                else:
+                if self._is_brie(item):
                     if item.quality < MAX_QUALITY:
                         item.quality += 1
+                else:
+                    if self._is_backstage(item):
+                        item.quality = item.quality - item.quality
+                    else:
+                        if item.quality > 0: 
+                            item.quality -= 1
+                        
+                
 
 
 class Item:
