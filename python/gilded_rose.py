@@ -30,10 +30,10 @@ class GildedRose(object):
             else:
                 if item.quality > 0:
                     if not self._is_sulfuras(item):
-                        item.quality = item.quality - 1
+                        item.quality -= 1
                 
             if not self._is_sulfuras(item):
-                item.sell_in = item.sell_in - 1
+                item.sell_in -= 1
             if item.sell_in < 0:
                 if not self._is_brie(item):
                     if not self._is_backstage(item):
